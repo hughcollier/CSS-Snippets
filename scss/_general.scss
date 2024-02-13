@@ -1,0 +1,85 @@
+@use '_setup.scss' as s;
+
+// Sidewide Styles
+
+#wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem;
+}
+
+body {
+  font-family: sans-serif;
+  color: s.$baseTextColor;
+}
+
+code:not([class]) {
+  background-color: s.$purple;
+  color: white;
+  padding: 1px 5px;
+  border-radius: 5px;
+  font-size: s.rem(16);
+}
+
+.overlapping-grid .text {
+  font-size: s.rem(32);
+}
+
+.overlapping-grid-2 .text,
+.overlapping-grid-2 .text-2 {
+  font-size: s.rem(100);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: s.$dark-purple;
+  margin: 1em 0;
+}
+
+h1 {
+  font-size: s.rem(30);
+}
+
+h2 {
+  font-size: s.rem(25);
+}
+
+h3 {
+  font-size: s.rem(20);
+}
+
+p {
+  font-size: s.rem(18);
+  line-height: 1.5;
+  margin: 1em 0;
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+// # Accordions - see here for details: https://www.youtube.com/watch?v=B_n4YONte5A&t=204s
+
+.accordion-title {
+  cursor: pointer;
+}
+
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 500ms;
+  border-bottom: 1px dashed s.$dark-purple;
+
+  &.open {
+    grid-template-rows: 1fr;
+    padding-bottom: 2em;
+  }
+
+  & > div {
+    overflow: hidden;
+  }
+}

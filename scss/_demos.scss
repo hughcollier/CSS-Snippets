@@ -1,0 +1,85 @@
+@use '_setup.scss' as s;
+
+.demo {
+  overflow: auto;
+  resize: horizontal;
+  border: 3px solid #eee;
+  padding: 15px;
+  container-type: inline-size;
+}
+
+.card {
+  height: 150px;
+  background-color: s.$cardBackground;
+}
+
+.flex {
+  display: flex;
+  height: 300vh;
+  align-items: center;
+}
+
+.flex > * {
+}
+
+// Grid Examples
+
+#card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+#card-container-2 {
+  display: grid;
+  gap: 1rem;
+}
+
+@include s.cq(small) {
+  #card-container-2 {
+    grid-template-columns: repeat(3, 1fr);
+
+    .card-1 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
+    .card-7 {
+      grid-column-start: 2;
+      grid-column-end: 4;
+    }
+  }
+}
+
+#card-container-3 {
+  display: grid;
+  gap: 1rem;
+}
+
+@include s.cq(small) {
+  #card-container-3 {
+    grid-template-columns: repeat(4, 1fr);
+
+    .span-2 {
+      grid-column: span 2;
+    }
+  }
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns:
+    [full-width-start] 1fr [content-start] minmax(250px, 700px)
+    [content-end] 1fr [full-width-end];
+}
+
+.content-grid > * {
+  grid-column: content;
+  // padding: 0 10px 0 10px;
+}
+
+.content-grid > .full-width {
+  grid-column: full-width;
+  background-color: s.$purple;
+  color: s.$dark-purple;
+}
