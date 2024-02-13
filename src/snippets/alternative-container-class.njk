@@ -1,0 +1,83 @@
+---
+title: Alternative to the inner / outer container classes
+---
+
+<div class="accordion-content">
+  <div>
+    <p>
+      Since this is such a common design pattern (a section that with a
+      background or image that spans the full width of the page) I have often
+      found myself doing something like this:
+    </p>
+    <pre><code class="language-html">
+						&lt;section class="outer"&gt;
+							&lt;div class="inner"&gt;
+							&lt;/div&gt;
+						&lt;/section&gt;
+						</code></pre>
+
+    <p>
+      But with a clever use of <code>display:grid</code> we can simplify this
+      hugely and do away with the extra inner div.
+    </p>
+
+    <p>
+      We are making use of a lesser-known CSS feature that allows us to set
+      names for our grid-lines using square brackets. While we can use any names
+      we like for our lines we should avoid names that might appear elsewhere in
+      the css spec - like span or div. Things become very cool when we also
+      append <code>-start</code> and <code>-end</code>. When we use this syntax
+      grid will create implicit named area for us. For example, in our example
+      below we are using the name <code>content-start</code> and
+      <code>content-end</code>. We can then place an element inside this area
+      using <code>grid-column: content</code>.
+    </p>
+
+    <pre><code class="language-css"> 
+					.content-grid {
+						display: grid;
+						grid-template-columns: [full-width-start] 1fr [content-start] minmax(250px, 700px) [content-end] 1fr [full-width-end];
+					}
+					
+					.content-grid > * {
+						grid-column: content;
+					}
+					
+					.content-grid > .full-width {
+						grid-column: full-width;
+						background-color: #b639ff;
+						color: #3a035e;
+					}
+						</code></pre>
+    <div class="demo">
+      <div class="content-grid">
+        <section class="">
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
+            aperiam in sit, fugiat deserunt, ipsum aliquam labore impedit nemo
+            quibusdam optio odio eaque nobis iure tempore. Architecto vel
+            reprehenderit ipsum?
+          </p>
+        </section>
+
+        <section class="content-grid full-width">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+            magnam asperiores reprehenderit error consequatur voluptas iure, at
+            eum doloremque nihil blanditiis numquam libero, tenetur quas
+            aspernatur reiciendis laudantium. Quae, tempora.
+          </p>
+        </section>
+
+        <section>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+            quia laboriosam adipisci, provident vero atque dolore modi a, quo
+            explicabo nihil distinctio. Quidem inventore sit quae tempore quod
+            explicabo cum?
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

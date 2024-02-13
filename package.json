@@ -5,16 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compileSass": "sass scss/style.scss css/style.css --style=expanded --embed-sources",
-    "prefix": "npm run compileSass && postcss css/style.css --use=autoprefixer --output=css/style.css",
-    "browser-start": "browser-sync -s -b /Applications/Firefox.app  --https -f='**/*.*' -w,",
-    "start": "concurrently \"onchange \"scss/**/*.scss\" \"scss/*.scss\" -- npm run prefix\" \"npm run browser-start \" "
+    "compileSass": "sass src/scss/style.scss src/css/style.css --style=expanded --embed-sources",
+    "prefix": "npm run compileSass && postcss src/css/style.css --use=autoprefixer --output=src/css/style.css",
+    "eleventy": "eleventy",
+    "eleventy:dev": "eleventy --serve",
+    "start": "concurrently \"onchange \"src/scss/**/*.scss\" \"src/scss/*.scss\" -- npm run prefix\" \"npm run eleventy:dev\" ",
+    "build": "concurrently \"onchange \"src/scss/**/*.scss\" \"src/scss/*.scss\" -- npm run prefix\" \"npm run eleventy\" "
   },
   "author": "Hugh Collier",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
     "autoprefixer": "^10.4.17",
-    "browser-sync": "^3.0.2",
     "concurrently": "^8.2.2",
     "onchange": "^7.1.0",
     "postcss": "^8.4.35",

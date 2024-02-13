@@ -1,0 +1,21 @@
+---
+title: Hugh's CSS Snippets
+layout: 'base.njk'
+---
+
+<h1>{{ title }}</h1>
+
+<p>
+  The examples below are using container queries so any of the demos are
+  resizable to see how things behave when page shrinks.
+</p>
+
+{%- for snippet in collections.sticky -%}
+<h2 class="accordion-title">{{ snippet.data.title }}</h2>
+{{ snippet.templateContent | safe }} {%- endfor -%}
+
+
+{%- for snippet in collections.snippet | reverse -%}
+<h2 class="accordion-title">{{ snippet.data.title }}</h2>
+
+{{ snippet.templateContent | safe }} {%- endfor -%}

@@ -71,7 +71,7 @@ hr {
 .accordion-content {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 500ms;
+  transition: grid-template-rows 250ms;
   border-bottom: 1px dashed s.$dark-purple;
 
   &.open {

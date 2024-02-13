@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hugh&#39;s CSS Snippets</title>
+    <link href="./css/style.css" rel="stylesheet" />
+    <link href="./css/prism.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <main>
+<h1>Hugh&#39;s CSS Snippets</h1>
+
+<p>
+  The examples below are using container queries so any of the demos are
+  resizable to see how things behave when page shrinks.
+</p><h2 class="accordion-title">Some useful CSS functions to keep in mind</h2>
+
+<div class="accordion-content">
+  <div>
+    <p>
+      Some of the examples on this page use some more advanced CSS functions to
+      achieve the results we want. For reference they are listed below along
+      with a brief explanation as well as some other useful functions to keep in
+      mind.
+    </p>
+
+    <h3>repeat()</h3>
+
+    <p>
+      Used to avoid repetitive declarations whens setting properties for
+      <code>grid-template-columns</code> and <code>grid-template-rows</code>.
+    </p>
+
+    <p>
+      The <code>repeat()</code> function takes two arguments, the first is the
+      repeat count and the second specifies the set of columns or rows (tracks)
+      to be repeated. The repeat count can either be set as an integer value of
+      1 or more, or using the keywords <code>auto-fill</code> or
+      <code>auto-fit</code> both of which will repeat the set of tracks as many
+      times as is needed to fill the grid container.
+    </p>
+
+    <pre>
+				<code class="language-css line-numbers">
+					
+					grid-template-columns: repat(4, 1fr)
+					
+					// is the same as
+					grid-template-columns: 1fr 1fr 1fr 1fr
+					
+				</code>
+			</pre>
+
+    <!-- <h3>minmax()</h3> -->
+
+    <h3>clamp()</h3>
+
+    <p>
+      This is a great one and particularly useful when working with viewport
+      units. <code>clamp()</code> takes in three arguments - the first is a
+      minimum value, the second is the preferred value and the third is the
+      maximum value.
+    </p>
+
+    <pre>
+			<code class="language-css line-numbers">
+				h2 {
+					font-size: clamp(5rem, 10vw, 30rem);
+				}
+			</code>
+			</pre>
+
+    <h2 style="font-size: 5vw">I am set to 5vw</h2>
+    <h2 style="font-size: clamp(4rem, 3vw, 10rem)">
+      So am I but using clamp()
+    </h2>
+
+    <p>
+      In the example above our h2's font-size property will be set to 10vw,
+      except in cases where 10vw is either smaller or bigger than our minimum /
+      maximum values. In which case the respective min / max value will be used
+      instead.
+    </p>
+
+    <p>
+      In normal language - ideally I want your font-size to be 10vw but please
+      don't get any smaller than 4rem or any bigger than 10rem.
+    </p>
+
+    <p>
+      The cool thing about this is that we can use relative units like
+      viewport-width without needing media queries to handle edge cases when the
+      screen width get's either very small or very wide.
+    </p>
+  </div>
+</div>
+<h2 class="accordion-title">Alternative to the inner / outer container classes</h2>
+
+
+<div class="accordion-content">
+  <div>
+    <p>
+      Since this is such a common design pattern (a section that with a
+      background or image that spans the full width of the page) I have often
+      found myself doing something like this:
+    </p>
+    <pre><code class="language-html">
+						&lt;section class="outer"&gt;
+							&lt;div class="inner"&gt;
+							&lt;/div&gt;
+						&lt;/section&gt;
+						</code></pre>
+
+    <p>
+      But with a clever use of <code>display:grid</code> we can simplify this
+      hugely and do away with the extra inner div.
+    </p>
+
+    <p>
+      We are making use of a lesser-known CSS feature that allows us to set
+      names for our grid-lines using square brackets. While we can use any names
+      we like for our lines we should avoid names that might appear elsewhere in
+      the css spec - like span or div. Things become very cool when we also
+      append <code>-start</code> and <code>-end</code>. When we use this syntax
+      grid will create implicit named area for us. For example, in our example
+      below we are using the name <code>content-start</code> and
+      <code>content-end</code>. We can then place an element inside this area
+      using <code>grid-column: content</code>.
+    </p>
+
+    <pre><code class="language-css"> 
+					.content-grid {
+						display: grid;
+						grid-template-columns: [full-width-start] 1fr [content-start] minmax(250px, 700px) [content-end] 1fr [full-width-end];
+					}
+					
+					.content-grid > * {
+						grid-column: content;
+					}
+					
+					.content-grid > .full-width {
+						grid-column: full-width;
+						background-color: #b639ff;
+						color: #3a035e;
+					}
+						</code></pre>
+    <div class="demo">
+      <div class="content-grid">
+        <section class="">
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
+            aperiam in sit, fugiat deserunt, ipsum aliquam labore impedit nemo
+            quibusdam optio odio eaque nobis iure tempore. Architecto vel
+            reprehenderit ipsum?
+          </p>
+        </section>
+
+        <section class="content-grid full-width">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+            magnam asperiores reprehenderit error consequatur voluptas iure, at
+            eum doloremque nihil blanditiis numquam libero, tenetur quas
+            aspernatur reiciendis laudantium. Quae, tempora.
+          </p>
+        </section>
+
+        <section>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+            quia laboriosam adipisci, provident vero atque dolore modi a, quo
+            explicabo nihil distinctio. Quidem inventore sit quae tempore quod
+            explicabo cum?
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="accordion-title">A more configurable grid.</h2>
+
+
+<div class="accordion-content">
+  <div>
+    <p>
+      In this example we use <code>display: grid</code> on the container to
+      setup a our basic grid for mobile and then use a media query to target
+      larger screen sizes.
+    </p>
+
+    <p>
+      This example shows how we can place our elements more precisely by
+      individually specifying each child's location within the grid we have
+      defined.
+    </p>
+
+    <pre>
+				<code class="language-css line-numbers">
+
+				#card-container-2 {
+					display: grid;
+					gap: 1rem;
+				}
+				
+				@media (min-width: 40em) {
+					#card-container-2 {
+						grid-template-columns: repeat(3, 1fr);
+					}
+					#card-container-2 .card-1 {
+						grid-column-start: 1;
+						grid-column-end: 3;
+					}
+					#card-container-2 .card-7 {
+						grid-column-start: 2;
+						grid-column-end: 4;
+					}
+				}
+
+					</code>
+			</pre>
+
+    <div class="demo">
+      <div id="card-container-2">
+        <div class="card card-1"></div>
+        <div class="card card-2"></div>
+        <div class="card card-3"></div>
+        <div class="card card-4"></div>
+        <div class="card card-5"></div>
+        <div class="card card-6"></div>
+        <div class="card card-7"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="accordion-title">An incredibly simple responsive grid.</h2>
+
+
+<div class="accordion-content">
+  <div>
+    <p>
+      This is such a cool way to create a simple grid! With only the following
+      CSS set on the parent we now have a responsive grid (no need for any media
+      queries) that will create a grid with equal columns with each column with
+      a minimum width of 250px. Nice!
+    </p>
+
+    <pre>
+			<code class="language-css line-numbers">
+		.card-container {
+			display: grid; 
+			grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); 
+			gap: 1rem;
+		}
+
+	</code>
+	</pre>
+
+    <div class="demo">
+      <div id="card-container">
+        <div class="card card-1"></div>
+        <div class="card card-2"></div>
+        <div class="card card-3"></div>
+        <div class="card card-4"></div>
+        <div class="card card-5"></div>
+        <div class="card card-6"></div>
+        <div class="card card-7"></div>
+        <div class="card card-8"></div>
+        <div class="card card-9"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="accordion-title">Span columns</h2>
+
+
+<div class="accordion-content">
+  <div>
+    <p>
+      As well as explicitly telling a child where to sit within the grid (as in
+      the example above), we can also do the below to achieve a similar effect.
+      Again, a media query is required for this to work responsively.
+    </p>
+
+    <pre><code class="language-css line-numbers"> 
+		#card-container-3 { 
+			display: grid; 
+			gap: 1rem; 
+		} 
+			
+		@media screen and (min-width: 500px) { 
+			#card-container-3 { 
+				grid-template-columns: repeat(4, 1fr); 
+			} 
+			
+			#card-container-3 .span-2 { 
+				grid-column: span 2; 
+			} 
+		}
+		</code></pre>
+
+    <div class="demo">
+      <div id="card-container-3">
+        <div class="card card-1 span-2"></div>
+        <div class="card card-2"></div>
+        <div class="card card-3"></div>
+        <div class="card card-4"></div>
+        <div class="card card-5"></div>
+        <div class="card card-6 span-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+    </div>
+    <script src="./js/script.js"></script>
+    <script src="./js/prism.js"></script>
+  </body>
+</html>
