@@ -10,7 +10,7 @@
     "eleventy": "eleventy",
     "eleventy:dev": "eleventy --serve",
     "start": "concurrently \"onchange \"src/scss/**/*.scss\" \"src/scss/*.scss\" -- npm run prefix\" \"npm run eleventy:dev\" ",
-    "build": "concurrently \"onchange \"src/scss/**/*.scss\" \"src/scss/*.scss\" -- npm run prefix\" \"npm run eleventy\" "
+    "build":  "npm run prefix && npm run eleventy"
   },
   "author": "Hugh Collier",
   "license": "ISC",
