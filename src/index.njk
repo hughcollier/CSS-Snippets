@@ -13,34 +13,17 @@ layout: 'base.njk'
 <h2>Functions</h2>
 
 {%- for snippet in collections.functions | reverse -%}
-<h3 class="accordion-title">{{ snippet.data.title }}</h3>
-
-<div class="accordion-content">
-  <article>
-    {{ snippet.templateContent | safe }} 
-  </article>
-</div>
+{% include 'snippet.njk' %}
 {%- endfor -%}
 
 <h2>Grid Snippets</h2>
 
 {%- for snippet in collections.grid | reverse -%}
-<h3 class="accordion-title">{{ snippet.data.title }}</h3>
-<div class="accordion-content">
-  <article>
-    {{ snippet.templateContent | safe }} 
-  </article>
-</div>
+{% include 'snippet.njk' %}
 {%- endfor -%}
 
 <h2>Flexbox Snippets</h2>
 
 {%- for snippet in collections.flex | reverse -%}
-<h3 class="accordion-title">{{ snippet.data.title }}</h3>
-<div class="accordion-content">
-  <article>
-    {{ snippet.templateContent | safe }} 
-  </article>
-</div>
-
+{% include 'snippet.njk' %}
 {%- endfor -%}
