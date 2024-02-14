@@ -5,7 +5,7 @@
 #wrapper {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 5rem;
+  padding: 10px;
 }
 
 body {
@@ -37,7 +37,7 @@ h4,
 h5,
 h6 {
   color: s.$dark-purple;
-  margin: 1em 0;
+  margin: 0.75em 0;
 }
 
 h1 {
@@ -46,6 +46,8 @@ h1 {
 
 h2 {
   font-size: s.rem(25);
+  color: s.$purple;
+
 }
 
 h3 {
@@ -55,7 +57,7 @@ h3 {
 p {
   font-size: s.rem(18);
   line-height: 1.5;
-  margin: 1em 0;
+  margin: 1.25em 0;
 }
 
 hr {
@@ -66,6 +68,18 @@ hr {
 
 .accordion-title {
   cursor: pointer;
+  
+  // &:after {
+  //   content: ">";
+  //   padding-right: 5px;
+  // }
+  // 
+  // &.open:after {
+  //   transform: rotate(90deg);
+  //   transform-origin: left bottom;
+  //   display: inline-block;
+  //   color:red;
+  // }
 }
 
 .accordion-content {
@@ -79,7 +93,7 @@ hr {
     padding-bottom: 2em;
   }
 
-  & > div {
+  & > article {
     overflow: hidden;
   }
 }
