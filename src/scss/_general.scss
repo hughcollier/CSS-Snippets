@@ -11,6 +11,10 @@
 body {
   font-family: sans-serif;
   color: s.$baseTextColor;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:300;
+  font-style: normal;
 }
 
 code:not([class]) {
@@ -68,6 +72,7 @@ hr {
 
 .accordion-title {
   cursor: pointer;
+  font-weight: 400;
   
   // &:after {
   //   content: ">";
@@ -86,7 +91,7 @@ hr {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 250ms;
-  border-bottom: 1px dashed s.$dark-purple;
+  border-bottom: 1px dotted s.$dark-purple;
 
   &.open {
     grid-template-rows: 1fr;
