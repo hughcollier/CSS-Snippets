@@ -1,6 +1,7 @@
 ---
 title: Thanks for getting in touch
 layout: 'base.njk'
+permalink: '/{{ page.fileSlug }}'
 ---
 
 ## {{title}}

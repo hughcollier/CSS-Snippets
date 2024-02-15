@@ -1,5 +1,5 @@
 <article>
-  <h3 class="accordion-title">{{ snippet.data.title }}</h3>
+  <h3 class="accordion-title">{{ snippet.data.title | prependText("I have been added via filter") }}</h3>
   <div class="accordion-content">
     <div>{{ snippet.templateContent | safe }}</div>
   </div>
