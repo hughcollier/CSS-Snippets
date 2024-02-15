@@ -12,18 +12,18 @@ layout: 'base.njk'
 
 <h2>Functions</h2>
 
-{%- for snippet in collections.functions | reverse -%}
+{% for snippet in collections.functions | reverse %}
 {% include 'snippet.njk' %}
-{%- endfor -%}
+{% endfor -%}
 
 <h2>Grid Snippets</h2>
 
-{%- for snippet in collections.grid | reverse -%}
+{% for snippet in collections.grid | reverse %}
 {% include 'snippet.njk' %}
-{%- endfor -%}
+{% endfor -%}
 
 <h2>Flexbox Snippets</h2>
 
-{%- for snippet in collections.flex | reverse -%}
+{% for snippet in collections.flex | reverse %}
 {% include 'snippet.njk' %}
-{%- endfor -%}
+{% endfor -%}
