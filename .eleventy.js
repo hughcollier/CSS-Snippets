@@ -4,7 +4,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./src/css');
   eleventyConfig.addPassthroughCopy('./src/js');
   
-  eleventyConfig.addFilter("prependTitle", function(string, text) {
+  // Add a custom filter so we can prepend text 
+  eleventyConfig.addFilter("prependText", function(string, text) {
     return `${text} ${string}`
   });
   
